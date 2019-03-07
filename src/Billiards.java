@@ -87,7 +87,7 @@ public class Billiards extends JFrame {
 
 	private class StartListener implements ActionListener {
 		@Override
-		public void actionPerformed(ActionEvent arg0) {
+		public synchronized void actionPerformed(ActionEvent arg0) {
 			// Code is executed when start button is pushed
 			if(threads == null) {
 				threads = new Thread[N_BALL];
@@ -102,7 +102,7 @@ public class Billiards extends JFrame {
 
 	private class StopListener implements ActionListener {
 		@Override
-		public void actionPerformed(ActionEvent arg0) {
+		public synchronized void actionPerformed(ActionEvent arg0) {
 			// TODO Code is executed when stop button is pushed
 			if(threads != null) {
 				for(int i = 0; i < N_BALL; i++) {

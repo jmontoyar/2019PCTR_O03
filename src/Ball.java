@@ -23,6 +23,8 @@ public class Ball {
 		y = Billiards.Height/2-16;
 		v = 5;
 		fi =  Math.random() * Math.PI * 2;
+		
+		checkPostCondition();
 	}
 
 	public void move() {
@@ -39,6 +41,12 @@ public class Ball {
 		reflect();
 		
 		//TODO Check postcondition
+		checkPostCondition();
+	}
+	
+	private void checkPostCondition() {
+		assert(x > Board.LEFTBOARD && x < Board.RIGHTBOARD - IMG_TAM_X): "Valor de x fuera de rango (" + Board.LEFTBOARD + ".." + (Board.RIGHTBOARD - IMG_TAM_X) + "). x=" + x;
+		assert(y > Board.TOPBOARD && y < Board.BOTTOMBOARD - IMG_TAM_Y): "Valor de y fuera de rango (" + Board.TOPBOARD + ".." + (Board.BOTTOMBOARD - IMG_TAM_Y) + "). y=" + y;
 	}
 
 	private void reflect() {
@@ -74,10 +82,12 @@ public class Ball {
 
 	public void setX(double x) {
 		this.x = x;
+		checkPostCondition();
 	}
 
 	public void setY(double y) {
 		this.y = y;
+		checkPostCondition();
 	}
 
 	public Image getImage() {

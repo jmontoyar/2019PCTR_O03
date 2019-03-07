@@ -54,6 +54,34 @@ public class Billiards extends JFrame {
 
 	private void initBalls() {
 		// TODO init balls
+		balls = new Ball[N_BALL];
+		
+		for(int i = 0; i < N_BALL; i++) {
+			balls[i] = new Ball();
+		}
+		
+		formarTriangulo();
+		board.setBalls(balls);
+	}
+	
+	// Establece las coordenadas de partida de las bolas para que formen un triángulo
+	private void formarTriangulo() {
+		int columna = 0;
+		int fila = 0;
+		double desplazamiento = 0;
+		
+		for(int i = 0; i < N_BALL; i++) {
+			if(fila > columna) {
+				fila = 0;
+				columna++;
+				desplazamiento -= 0.5;
+			}
+			
+			balls[i].setX(balls[i].getX() - (int)(balls[i].getImage().getWidth(null) * columna));
+			balls[i].setY(balls[i].getY() - (int)(balls[i].getImage().getHeight(null) * (fila + desplazamiento)));
+			
+			fila++;
+		}
 	}
 
 	private class StartListener implements ActionListener {
